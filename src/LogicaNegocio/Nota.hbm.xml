@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 3, 2017 5:54:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="LogicaNegocio.Nota" table="nota" catalog="lab1_2" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="alumno" class="LogicaNegocio.Alumno" fetch="select">
+            <column name="Alumno" />
+        </many-to-one>
+        <many-to-one name="curso" class="LogicaNegocio.Curso" fetch="select">
+            <column name="Curso" />
+        </many-to-one>
+        <property name="nota" type="string">
+            <column name="nota" length="15" />
+        </property>
+        <property name="historial" type="java.lang.Integer">
+            <column name="Historial" />
+        </property>
+    </class>
+</hibernate-mapping>

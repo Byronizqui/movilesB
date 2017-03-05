@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 3, 2017 5:54:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="LogicaNegocio.Curso" table="curso" catalog="lab1_2" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="carrera" class="LogicaNegocio.Carrera" fetch="select">
+            <column name="Carrera" />
+        </many-to-one>
+        <many-to-one name="ciclo" class="LogicaNegocio.Ciclo" fetch="select">
+            <column name="Ciclo" />
+        </many-to-one>
+        <property name="codigo" type="string">
+            <column name="codigo" length="15" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="15" />
+        </property>
+        <property name="creditos" type="java.lang.Integer">
+            <column name="creditos" />
+        </property>
+        <property name="horasSemanles" type="java.lang.Integer">
+            <column name="horasSemanles" />
+        </property>
+        <set name="alumnos" table="curso_has_alumno" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Curso_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="LogicaNegocio.Alumno">
+                <column name="Alumno_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="grupos" table="grupo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Curso" />
+            </key>
+            <one-to-many class="LogicaNegocio.Grupo" />
+        </set>
+        <set name="notas" table="nota" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Curso" />
+            </key>
+            <one-to-many class="LogicaNegocio.Nota" />
+        </set>
+    </class>
+</hibernate-mapping>

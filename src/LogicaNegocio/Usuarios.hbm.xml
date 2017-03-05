@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 3, 2017 5:54:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="LogicaNegocio.Usuarios" table="usuarios" catalog="lab1_2" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="cedula" type="string">
+            <column name="cedula" length="15" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="15" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="15" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="25" />
+        </property>
+        <property name="fechaNac" type="date">
+            <column name="fechaNac" length="10" />
+        </property>
+        <property name="type" type="java.lang.Integer">
+            <column name="type" />
+        </property>
+        <set name="matriculadors" table="matriculador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="LogicaNegocio.Matriculador" />
+        </set>
+        <set name="administradors" table="administrador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="LogicaNegocio.Administrador" />
+        </set>
+        <set name="profesors" table="profesor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="LogicaNegocio.Profesor" />
+        </set>
+        <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="LogicaNegocio.Alumno" />
+        </set>
+    </class>
+</hibernate-mapping>
